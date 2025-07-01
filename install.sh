@@ -118,6 +118,8 @@ for path in /opt/stacks/*; do
   sleep 3
 done
 
+docker network create home_network >/dev/null
+
 cd $(get_script_dir)
 
 success "erffy/dockerfile is successfully installed and running"

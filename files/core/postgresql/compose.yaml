@@ -8,7 +8,7 @@ services:
     volumes:
       - ./data:/var/lib/postgresql/data
     networks:
-      - erffy_network
+      - home_network
 networks:
-  erffy_network:
+  home_network:
     external: true

@@ -12,7 +12,7 @@ services:
     volumes:
       - /home/eren/pastebin:/upload
     networks:
-      - erffy_network
+      - home_network
 networks:
-  erffy_network:
+  home_network:
     external: true

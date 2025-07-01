@@ -7,7 +7,7 @@ services:
     volumes:
       - /home/eren/slimserve:/data
     networks:
-      - erffy_network
+      - home_network
 networks:
-  erffy_network:
+  home_network:
     external: true

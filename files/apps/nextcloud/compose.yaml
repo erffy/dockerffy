@@ -6,7 +6,7 @@ services:
     volumes:
       - ./cloud/redis:/data
     networks:
-      - erffy_network
+      - home_network
   cloud:
     image: nextcloud:latest
     restart: always
@@ -18,7 +18,7 @@ services:
     extra_hosts:
       - cloud.erffy.me:127.0.0.1
     networks:
-      - erffy_network
+      - home_network
   cron:
     image: nextcloud:latest
     restart: always
@@ -28,7 +28,7 @@ services:
     depends_on:
       - redis
     networks:
-      - erffy_network
+      - home_network
 networks:
-  erffy_network:
+  home_network:
     external: true
