@@ -69,6 +69,19 @@ detect_firewall() {
     return 1
 }
 
+check_port_in_use() {
+  local port_num=$1
+  local proto=$2
+
+  if ss -lntu | grep -E "\b$proto\b.*:$port_num\b" >/dev/null; then
+    return 0
+  elif command -v lsof &>/dev/null && lsof -i "$proto:$port_num" >/dev/null; then
+    return 0
+  fi
+
+  return 1
+}
+
 is_root() {
     [ "$(id -u)" -eq 0 ] && echo true || echo false
 }
