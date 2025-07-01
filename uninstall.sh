@@ -5,7 +5,6 @@ source ./utils.sh
 readonly PORTS=(
   "53/tcp 53/udp 80/tcp 443/tcp 443/udp 3000/tcp" # AdGuard Home related ports
   "2000/tcp" # ConvertX related port
-  "4000/tcp" # LibreSpeed related port
   "5432/tcp" # PostgresQL related port
   "6000/tcp 6433/tcp 6433/udp" # Nextcloud related ports
   "7000/tcp" # Pastebin related port
@@ -27,6 +26,8 @@ for container in "${containers[@]}"; do
 done
 
 sleep 3
+
+docker network prune
 
 rm -rf /opt/{dockge,stacks,containerd}
 
