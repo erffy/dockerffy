@@ -1,0 +1,34 @@
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    volumes:
+      - ./cloud/redis:/data
+    networks:
+      - erffy_network
+  cloud:
+    image: nextcloud:latest
+    restart: always
+    ports:
+      - 6000:80
+      - 6433:443
+    volumes:
+      - ./cloud/data:/var/www/html
+    extra_hosts:
+      - cloud.erffy.me:127.0.0.1
+    networks:
+      - erffy_network
+  cron:
+    image: nextcloud:latest
+    restart: always
+    volumes:
+      - ./cloud/data:/var/www/html
+    entrypoint: /cron.sh
+    depends_on:
+      - redis
+    networks:
+      - erffy_network
+networks:
+  erffy_network:
+    external: true

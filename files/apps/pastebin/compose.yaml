@@ -1,0 +1,18 @@
+services:
+  server:
+    image: wantguns/bin
+    container_name: pastebin
+    restart: always
+    ports:
+      - 7000:6163
+    environment:
+      - BIN_PORT=6163
+      - BIN_LIMITS={form="16 MiB"}
+      - BIN_CLIENT_DESC=placeholder
+    volumes:
+      - /home/eren/pastebin:/upload
+    networks:
+      - erffy_network
+networks:
+  erffy_network:
+    external: true

@@ -1,0 +1,13 @@
+services:
+  server:
+    image: ghcr.io/xeome/slimserve:latest
+    restart: always
+    ports:
+      - 8000:8080
+    volumes:
+      - /home/eren/slimserve:/data
+    networks:
+      - erffy_network
+networks:
+  erffy_network:
+    external: true
